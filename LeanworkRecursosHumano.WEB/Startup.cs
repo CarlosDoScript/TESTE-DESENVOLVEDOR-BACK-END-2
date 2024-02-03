@@ -1,3 +1,5 @@
+using LeanworkRecursosHumano.Core.Services;
+using LeanworkRecursosHumano.Infrastructure.Github;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -18,6 +20,8 @@ namespace LeanworkRecursosHumano.WEB
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            services.AddHttpClient();
+            services.AddScoped<IGithubService, GithubService>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

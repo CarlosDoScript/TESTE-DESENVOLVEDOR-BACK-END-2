@@ -1,4 +1,5 @@
-﻿using LeanworkRecursosHumano.WEB.Models;
+﻿using LeanworkRecursosHumano.Core.Services;
+using LeanworkRecursosHumano.WEB.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -12,14 +13,18 @@ namespace LeanworkRecursosHumano.WEB.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly IGithubService _gitHubService;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, IGithubService githubService)
         {
             _logger = logger;
+            _gitHubService = githubService;
         }
 
         public IActionResult Index()
         {
+            var usuarioGitHubDTO = _gitHubService.GetUsuariosAsync("",30);
+
             return View();
         }
 
