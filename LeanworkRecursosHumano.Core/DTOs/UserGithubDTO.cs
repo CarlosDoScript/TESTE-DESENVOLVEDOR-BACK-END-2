@@ -6,9 +6,9 @@ using System.Text.Json.Serialization;
 namespace LeanworkRecursosHumano.Core.DTOs
 {
 
-    public class GithubUserDTO
+    public class UserGithubDTO
     {
-        public GithubUserDTO(int id, string login, string html_url, string type, string creatredAtFormatted)
+        public UserGithubDTO(int id, string login, string html_url, string type, string creatredAtFormatted)
         {
             Id = id;
             Login = login;

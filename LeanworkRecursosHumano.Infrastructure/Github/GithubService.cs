@@ -27,51 +27,7 @@ namespace LeanworkRecursosHumano.Infrastructure.Github
             _githubConfig = githubConfig;
         }
 
-        public async Task<GithubUserDTO> GetUserByLoginNameAsync(string userLogin)
-        {
-            var httpClientFactory = _httpClientFactory.CreateClient();
-
-            httpClientFactory.DefaultRequestHeaders
-                .Authorization = new AuthenticationHeaderValue("Bearer", _githubConfig.Key);
-
-            httpClientFactory.DefaultRequestHeaders.
-                UserAgent.Add(new ProductInfoHeaderValue("AppName", "1.0"));
-
-            var url = $"{_githubBaseUrl}/users/{userLogin}";
-
-            var response = await httpClientFactory.GetAsync(url);
-
-            GithubUserDTO userGitHubDTO;
-
-            if (!response.IsSuccessStatusCode)
-            {
-                throw new Exception("Falha na requisição: " + response.StatusCode + " - " + response.Content);
-            }
-
-            var responseContent = await response
-                .Content.ReadAsStringAsync();
-
-            var settings = new JsonSerializerSettings
-            {
-                DateFormatHandling = DateFormatHandling.IsoDateFormat,
-                DateTimeZoneHandling = DateTimeZoneHandling.Utc
-            };
-
-            userGitHubDTO = JsonConvert
-            .DeserializeObject<GithubUserDTO>(responseContent,settings);
-
-            var userGitHubDTOFormatted = new GithubUserDTO(
-                userGitHubDTO.Id,
-                userGitHubDTO.Login,
-                userGitHubDTO.Html_url,
-                userGitHubDTO.Type,
-                userGitHubDTO.Created_at.ToString("dd/MM/yyyy")
-                ) ;
-
-            return userGitHubDTOFormatted;
-        }
-
-        public async Task<List<GithubUserDTO>> GetUsersAsync()
+        public async Task<List<UserGithubDTO>> GetUsersAsync()
         {
             int perPage = 30, page = 1;
 
@@ -96,9 +52,83 @@ namespace LeanworkRecursosHumano.Infrastructure.Github
                 .Content.ReadAsStringAsync();
 
             var usersGitHubDTO = JsonConvert
-            .DeserializeObject<List<GithubUserDTO>>(responseContent);
+            .DeserializeObject<List<UserGithubDTO>>(responseContent);
 
             return usersGitHubDTO;
+        }
+
+        public async Task<UserGithubDTO> GetUserByLoginNameAsync(string userLogin)
+        {
+            var httpClientFactory = _httpClientFactory.CreateClient();
+
+            httpClientFactory.DefaultRequestHeaders
+                .Authorization = new AuthenticationHeaderValue("Bearer", _githubConfig.Key);
+
+            httpClientFactory.DefaultRequestHeaders.
+                UserAgent.Add(new ProductInfoHeaderValue("AppName", "1.0"));
+
+            var url = $"{_githubBaseUrl}/users/{userLogin}";
+
+            var response = await httpClientFactory.GetAsync(url);
+
+            UserGithubDTO userGitHubDTO;
+
+            if (!response.IsSuccessStatusCode)
+            {
+                throw new Exception("Falha na requisição: " + response.StatusCode + " - " + response.Content);
+            }
+
+            var responseContent = await response
+                .Content.ReadAsStringAsync();
+
+            var settings = new JsonSerializerSettings
+            {
+                DateFormatHandling = DateFormatHandling.IsoDateFormat,
+                DateTimeZoneHandling = DateTimeZoneHandling.Utc
+            };
+
+            userGitHubDTO = JsonConvert
+            .DeserializeObject<UserGithubDTO>(responseContent, settings);
+
+            var userGitHubDTOFormatted = new UserGithubDTO(
+                userGitHubDTO.Id,
+                userGitHubDTO.Login,
+                userGitHubDTO.Html_url,
+                userGitHubDTO.Type,
+                userGitHubDTO.Created_at.ToString("dd/MM/yyyy")
+                );
+
+            return userGitHubDTOFormatted;
+        }
+
+        public async Task<List<ReposGithubDTO>> GetReposByLoginNameAsync(string userLogin)
+        {
+            var httpClientFactory = _httpClientFactory.CreateClient();
+
+            httpClientFactory.DefaultRequestHeaders
+                .Authorization = new AuthenticationHeaderValue("Bearer", _githubConfig.Key);
+
+            httpClientFactory.DefaultRequestHeaders.
+                UserAgent.Add(new ProductInfoHeaderValue("AppName", "1.0"));
+
+            var url = $"{_githubBaseUrl}/users/{userLogin}/repos";
+
+            var response = await httpClientFactory.GetAsync(url);
+
+            List<ReposGithubDTO> reposGithubDTO = new List<ReposGithubDTO>();
+
+            if (!response.IsSuccessStatusCode)
+            {
+                throw new Exception("Falha na requisição: " + response.StatusCode + " - " + response.Content);
+            }
+
+            var responseContent = await response
+                .Content.ReadAsStringAsync();
+
+            reposGithubDTO = JsonConvert
+                .DeserializeObject<List<ReposGithubDTO>>(responseContent);
+
+            return reposGithubDTO;
         }
     }
 }
