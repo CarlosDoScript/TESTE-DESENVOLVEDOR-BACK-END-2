@@ -4,9 +4,9 @@ using System.Text;
 
 namespace LeanworkRecursosHumano.Core.DTOs
 {
-    public class GithubUsuarioDTO
+    public class GithubUserDTO
     {
-        public GithubUsuarioDTO(int id, string login, string url, string type)
+        public GithubUserDTO(int id, string login, string url, string type)
         {
             Id = id; 
             Login = login;

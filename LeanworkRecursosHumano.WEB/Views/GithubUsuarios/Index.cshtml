@@ -1,0 +1,34 @@
+﻿@{
+    ViewData["Title"] = "Usuários GitHub";
+}
+
+<h3>Usuários GitHub</h3>
+
+<hr />
+<div class="d-flex justify-content-end">
+    <div class="input-group mt-2 w-25">
+        <input type="text" id="records-filter" class="form-control" placeholder="Pesquisar...">
+    </div>
+</div>
+<div>
+    <table id="table-records" class="table table-bordered mt-3">
+        <thead>
+            <tr>
+                <th width="10">Identificação</th>
+                <th>Login</th>
+                <th width="15"></th>
+            </tr>
+        </thead>
+        <tbody id="users-table-body"></tbody>
+    </table>
+</div>
+<!--SPINNER DE CARREGAMENTO DE REGISTROS-->
+<div class="d-flex justify-content-center">
+    <div class="spinner-border text-primary d-flex " role="status">
+    </div>
+</div>
+
+<div id="pagination-container" class="pagination"></div>
+
+
+<script src="~/js/githubusuarios/githubusuarios.js"></script>

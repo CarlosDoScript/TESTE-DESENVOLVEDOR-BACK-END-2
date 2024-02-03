@@ -24,7 +24,7 @@ namespace LeanworkRecursosHumano.Infrastructure.Github
             _githubBaseUrl = configuration.GetSection("Services:Github").Value;
             _githubConfig = githubConfig;
         }
-        public async Task<List<GithubUsuarioDTO>> GetUsuariosAsync(string filter = null, int perPage = 50, int page = 1)
+        public async Task<List<GithubUserDTO>> GetUsersAsync(string filter = null, int perPage = 30, int page = 1)
         {
             var httpClientFactory = _httpClientFactory.CreateClient();
 
@@ -36,19 +36,19 @@ namespace LeanworkRecursosHumano.Infrastructure.Github
 
             if (!string.IsNullOrEmpty(filter))
             {
-                var usuarioUrl = $"{_githubBaseUrl}/users/{filter}";
-                var responseUser = await httpClientFactory.GetAsync(usuarioUrl);
+                var userUrl = $"{_githubBaseUrl}/users/{filter}";
+                var responseUser = await httpClientFactory.GetAsync(userUrl);
 
                 if (responseUser.IsSuccessStatusCode)
                 {
-                    var usuarioContent = await responseUser.Content.ReadAsStringAsync();
-                    var githubUsuario = JsonConvert.DeserializeObject<GithubUsuarioDTO>(usuarioContent);
+                    var userContent = await responseUser.Content.ReadAsStringAsync();
+                    var userGitHubDTO = JsonConvert.DeserializeObject<GithubUserDTO>(userContent);
 
-                    return new List<GithubUsuarioDTO> { githubUsuario };
+                    return new List<GithubUserDTO> { userGitHubDTO };
                 }
                 else
                 {
-                    return new List<GithubUsuarioDTO>();
+                    return new List<GithubUserDTO>();
                 }
             }
             else
@@ -62,14 +62,14 @@ namespace LeanworkRecursosHumano.Infrastructure.Github
                     var responseContent = await response
                         .Content.ReadAsStringAsync();
 
-                    var githubUsuarioDTO = JsonConvert
-                    .DeserializeObject<List<GithubUsuarioDTO>>(responseContent);
+                    var usersGitHubDTO = JsonConvert
+                    .DeserializeObject<List<GithubUserDTO>>(responseContent);
 
-                    return githubUsuarioDTO;
+                    return usersGitHubDTO;
                 }
                 else
                 {
-                    return new List<GithubUsuarioDTO>();
+                    return new List<GithubUserDTO>();
                 }
             }
         }
