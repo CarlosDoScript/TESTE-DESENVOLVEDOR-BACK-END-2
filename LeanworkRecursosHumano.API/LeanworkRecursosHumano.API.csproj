@@ -12,5 +12,10 @@
     <Folder Include="Controllers\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\LeanworkRecursosHumano.Application\LeanworkRecursosHumano.Application.csproj" />
+    <ProjectReference Include="..\LeanworkRecursosHumano.Infrastructure\LeanworkRecursosHumano.Infrastructure.csproj" />
+  </ItemGroup>
+
 
 </Project>
