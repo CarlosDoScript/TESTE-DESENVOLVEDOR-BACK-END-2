@@ -18,7 +18,7 @@ namespace LeanworkRecursosHumano.WEB.Controllers
         }
 
         [HttpGet]
-        public async  Task<JsonResult> GetUsers()
+        public async Task<JsonResult> GetUsers()
         {
             var usersGitHubDTO = await _gitHubService.GetUsersAsync();
 
@@ -31,6 +31,14 @@ namespace LeanworkRecursosHumano.WEB.Controllers
             var userDetails = await _gitHubService.GetUserByLoginNameAsync(userLogin);
 
             return View(userDetails);
+        }
+
+        [HttpGet]
+        public async Task<JsonResult> GetReposByLoginName(string userLogin)
+        {
+            var userRepos = await _gitHubService.GetReposByLoginNameAsync(userLogin);
+
+            return Json(userRepos);
         }
     }
 }

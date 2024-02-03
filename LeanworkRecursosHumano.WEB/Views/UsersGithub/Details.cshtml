@@ -42,4 +42,34 @@
     </div>
 </div>
 
-<script src="~/js/githubusuarios/userdetails.js"></script>
+<hr />
+
+<h3>Repositórios</h3>
+
+<div class="d-flex justify-content-end">
+    <div class="input-group mt-2 w-25">
+        <input type="text" id="records-filter" class="form-control" placeholder="Pesquisar...">
+    </div>
+</div>
+
+<div>
+    <table id="table-records" class="table table-bordered mt-3">
+        <thead>
+            <tr>
+                <th width="10">Identificação</th>
+                <th>Nome</th>
+                <th width="300">URL repositório</th>
+            </tr>
+        </thead>
+        <tbody id="usersRepos-table-body"></tbody>
+    </table>
+</div>
+<!--SPINNER DE CARREGAMENTO DE REGISTROS-->
+<div class="d-flex justify-content-center">
+    <div class="spinner-border text-primary d-flex " role="status">
+    </div>
+</div>
+
+<div id="pagination-container" class="pagination mb-5"></div>
+
+<script src="~/js/UsersGithub/userdetails.js"></script>
