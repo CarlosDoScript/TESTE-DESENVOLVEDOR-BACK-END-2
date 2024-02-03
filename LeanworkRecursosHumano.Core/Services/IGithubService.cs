@@ -9,5 +9,6 @@ namespace LeanworkRecursosHumano.Core.Services
     public interface IGithubService
     {
         Task<List<GithubUserDTO>> GetUsersAsync();
+        Task<GithubUserDTO> GetUserByLoginNameAsync(string userLogin);
     }
 }

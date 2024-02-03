@@ -25,10 +25,12 @@ namespace LeanworkRecursosHumano.WEB.Controllers
             return Json(usersGitHubDTO);
         }
 
-        [HttpGet("/GithubUsuarios/Details/{id}")]
-        public IActionResult Details([FromRoute(Name = "id")] int userId)
+        [HttpGet("/GithubUsuarios/Details/{userLogin}")]
+        public async Task<IActionResult> Details([FromRoute(Name = "userLogin")] string userLogin)
         {
-            return View();
+            var userDetails = await _gitHubService.GetUserByLoginNameAsync(userLogin);
+
+            return View(userDetails);
         }
     }
 }

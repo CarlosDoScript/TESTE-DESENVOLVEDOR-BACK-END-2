@@ -42,8 +42,7 @@ function displayRecords(currentPage) {
         var line = "<tr>";
         line += "<td title='" + user.id + "' >" + user.id + "</td>";
         line += "<td  title='" + user.login + "' >" + user.login + "</td>";
-        console.log(user.id)
-        line += "<td><a href='/GithubUsuarios/Details/" + parseInt(user.id) + "' data-id=" + user.id + " title='Detalhes do usuário'><i class='fas fa-eye'></i></a></td>";
+        line += "<td><a href='/GithubUsuarios/Details/" + user.login + "' data-id=" + user.id + " title='Detalhes do usuário'><i class='fas fa-eye'></i></a></td>";
         line += "</tr>";
 
         $("#users-table-body").append(line);
@@ -70,7 +69,7 @@ function displayFilteredRecords(filteredUsers, currentPage) {
         var line = "<tr>";
         line += "<td>" + user.id + "</td>";
         line += "<td>" + user.login + "</td>";
-        line += "<td><a href='/GithubUsuarios/Details/" + parseInt(user.id) + "' data-id=" + user.id + " title='Detalhes do usuário'><i class='fas fa-eye'></i></a></td>";
+        line += "<td><a href='/GithubUsuarios/Details/" + user.login + "' data-id=" + user.id + " title='Detalhes do usuário'><i class='fas fa-eye'></i></a></td>";
         line += "</tr>";
 
         $("#users-table-body").append(line);
