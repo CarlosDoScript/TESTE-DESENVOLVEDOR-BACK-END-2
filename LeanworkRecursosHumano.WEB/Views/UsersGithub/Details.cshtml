@@ -1,0 +1,45 @@
+﻿@model LeanworkRecursosHumano.Core.DTOs.GithubUserDTO
+@{
+    ViewData["Title"] = "Informações do usuário";
+}
+
+<h3>Informações do usuário</h3>
+
+<div cite="d-flex">
+    <label>
+        Usuários GitHub
+    </label>
+    /
+    <label> Informações do usuário</label>
+</div>
+
+<div>
+    <a class="btn btn-primary" href="/UsersGithub/Index">
+        Voltar
+    </a>
+</div>
+
+<div class="container mt-4">
+    <div class="card">
+        <div class="card-body">
+            <div class="mb-3">
+                <label class="form-label">Identificação</label>
+                <p title="@Model.Id" id="userId" class="form-control">@Model.Id</p>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Login</label>
+                <p title="@Model.Login" id="userLogin" class="form-control">@Model.Login</p>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">URL do Perfil</label>
+                <a title="Visitar Perfil" href="@Model.Html_url" target="_blank" id="userUrlRepository" class="form-control">@Model.Html_url</a>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Data de Cadastro</label>
+                <p title="@Model.CreatredAtFormatted" class="form-control">@Model.CreatredAtFormatted</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/js/githubusuarios/userdetails.js"></script>

@@ -19,7 +19,7 @@ function loadRecords() {
     let filter = $("#records-filter").val();
 
     $.ajax({
-        url: '/GithubUsuarios/GetUsers',
+        url: '/UsersGithub/GetUsers',
         type: 'GET',
         success: function (response) {
             users = response;
@@ -42,7 +42,7 @@ function displayRecords(currentPage) {
         var line = "<tr>";
         line += "<td title='" + user.id + "' >" + user.id + "</td>";
         line += "<td  title='" + user.login + "' >" + user.login + "</td>";
-        line += "<td><a href='/GithubUsuarios/Details/" + user.login + "' data-id=" + user.id + " title='Detalhes do usuário'><i class='fas fa-eye'></i></a></td>";
+        line += "<td><a href='/UsersGithub/Details/" + user.login + "' data-id=" + user.id + " title='Detalhes do usuário'><i class='fas fa-eye'></i></a></td>";
         line += "</tr>";
 
         $("#users-table-body").append(line);
@@ -69,7 +69,7 @@ function displayFilteredRecords(filteredUsers, currentPage) {
         var line = "<tr>";
         line += "<td>" + user.id + "</td>";
         line += "<td>" + user.login + "</td>";
-        line += "<td><a href='/GithubUsuarios/Details/" + user.login + "' data-id=" + user.id + " title='Detalhes do usuário'><i class='fas fa-eye'></i></a></td>";
+        line += "<td><a href='/UsersGithub/Details/" + user.login + "' data-id=" + user.id + " title='Detalhes do usuário'><i class='fas fa-eye'></i></a></td>";
         line += "</tr>";
 
         $("#users-table-body").append(line);

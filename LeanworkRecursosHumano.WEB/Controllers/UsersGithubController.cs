@@ -4,11 +4,11 @@ using System.Threading.Tasks;
 
 namespace LeanworkRecursosHumano.WEB.Controllers
 {
-    public class GithubUsuariosController : Controller
+    public class UsersGithubController : Controller
     {
         private readonly IGithubService _gitHubService;
 
-        public GithubUsuariosController(IGithubService githubService)
+        public UsersGithubController(IGithubService githubService)
         {
             _gitHubService = githubService;
         }
@@ -25,7 +25,7 @@ namespace LeanworkRecursosHumano.WEB.Controllers
             return Json(usersGitHubDTO);
         }
 
-        [HttpGet("/GithubUsuarios/Details/{userLogin}")]
+        [HttpGet("/UsersGithub/Details/{userLogin}")]
         public async Task<IActionResult> Details([FromRoute(Name = "userLogin")] string userLogin)
         {
             var userDetails = await _gitHubService.GetUserByLoginNameAsync(userLogin);
