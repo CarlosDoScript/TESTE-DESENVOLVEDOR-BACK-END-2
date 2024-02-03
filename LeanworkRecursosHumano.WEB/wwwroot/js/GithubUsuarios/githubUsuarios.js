@@ -21,7 +21,6 @@ function loadRecords() {
     $.ajax({
         url: '/GithubUsuarios/GetUsers',
         type: 'GET',
-        data: { filter: filter },
         success: function (response) {
             users = response;
             displayRecords(1);

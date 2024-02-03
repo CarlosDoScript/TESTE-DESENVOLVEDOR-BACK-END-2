@@ -18,9 +18,9 @@ namespace LeanworkRecursosHumano.WEB.Controllers
         }
 
         [HttpGet]
-        public async  Task<JsonResult> GetUsers(string filter)
+        public async  Task<JsonResult> GetUsers()
         {
-            var usersGitHubDTO = await _gitHubService.GetUsersAsync(filter, 30, 1);
+            var usersGitHubDTO = await _gitHubService.GetUsersAsync();
 
             return Json(usersGitHubDTO);
         }
