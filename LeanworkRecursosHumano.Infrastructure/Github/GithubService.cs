@@ -16,19 +16,20 @@ namespace LeanworkRecursosHumano.Infrastructure.Github
     {
         private readonly IHttpClientFactory _httpClientFactory;
         private readonly string _githubBaseUrl;
-        private readonly string _githubBearerToken;
-        public GithubService(IHttpClientFactory httpClientFactory, IConfiguration configuration)
+        private readonly GithubConfig _githubConfig;
+
+        public GithubService(IHttpClientFactory httpClientFactory, IConfiguration configuration, GithubConfig githubConfig)
         {
             _httpClientFactory = httpClientFactory;
             _githubBaseUrl = configuration.GetSection("Services:Github").Value;
-            _githubBearerToken = configuration.GetSection("Github:Key").Value;
+            _githubConfig = githubConfig;
         }
-        public async Task<List<GithubUsuarioDTO>> GetUsuariosAsync(string filter = null, int perPage = 30)
+        public async Task<List<GithubUsuarioDTO>> GetUsuariosAsync(string filter = null, int perPage = 50, int page = 1)
         {
             var httpClientFactory = _httpClientFactory.CreateClient();
 
             httpClientFactory.DefaultRequestHeaders
-                .Authorization = new AuthenticationHeaderValue("Bearer", _githubBearerToken);
+                .Authorization = new AuthenticationHeaderValue("Bearer", _githubConfig.Key);
 
             httpClientFactory.DefaultRequestHeaders.
                 UserAgent.Add(new ProductInfoHeaderValue("AppName", "1.0"));
@@ -52,7 +53,7 @@ namespace LeanworkRecursosHumano.Infrastructure.Github
             }
             else
             {
-                var url = $"{_githubBaseUrl}/users?per_page={perPage}";
+                var url = $"{_githubBaseUrl}/users?per_page={perPage}&page={page}";
 
                 var response = await httpClientFactory.GetAsync(url);
 

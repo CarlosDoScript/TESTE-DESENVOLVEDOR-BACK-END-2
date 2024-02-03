@@ -8,6 +8,6 @@ namespace LeanworkRecursosHumano.Core.Services
 {
     public interface IGithubService
     {
-        Task<List<GithubUsuarioDTO>> GetUsuariosAsync(string filter, int perPage);
+        Task<List<GithubUsuarioDTO>> GetUsuariosAsync(string filter, int perPage, int page = 1);
     }
 }

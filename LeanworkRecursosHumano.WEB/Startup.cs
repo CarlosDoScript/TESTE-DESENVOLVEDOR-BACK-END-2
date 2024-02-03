@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using System.IO;
 
 namespace LeanworkRecursosHumano.WEB
 {
@@ -22,6 +23,14 @@ namespace LeanworkRecursosHumano.WEB
             services.AddControllersWithViews();
             services.AddHttpClient();
             services.AddScoped<IGithubService, GithubService>();
+
+            var configurationBuilder = new ConfigurationBuilder()
+                .SetBasePath(Directory.GetCurrentDirectory())
+                .AddJsonFile("Keys/GithubKey.json", optional: false, reloadOnChange: true);
+
+            var configuration = configurationBuilder.Build();
+            var githubConfig = configuration.GetSection("Github").Get<GithubConfig>();
+            services.AddScoped(provider => githubConfig);
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

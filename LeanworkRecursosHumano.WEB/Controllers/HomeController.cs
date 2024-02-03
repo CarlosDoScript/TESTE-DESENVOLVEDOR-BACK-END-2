@@ -23,7 +23,7 @@ namespace LeanworkRecursosHumano.WEB.Controllers
 
         public IActionResult Index()
         {
-            var usuarioGitHubDTO = _gitHubService.GetUsuariosAsync("",30);
+            var usuarioGitHubDTO = _gitHubService.GetUsuariosAsync("",30,2);
 
             return View();
         }
