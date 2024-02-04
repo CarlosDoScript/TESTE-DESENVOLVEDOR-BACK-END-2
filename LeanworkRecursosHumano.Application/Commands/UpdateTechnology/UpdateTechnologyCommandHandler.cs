@@ -8,11 +8,11 @@ using System.Threading.Tasks;
 
 namespace LeanworkRecursosHumano.Application.Commands.UpdateTechnology
 {
-    public class UpdateProjectCommandHandler : IRequestHandler<UpdateTechnologyCommand, Unit>
+    public class UpdateTechnologyCommandHandler : IRequestHandler<UpdateTechnologyCommand, Unit>
     {
         private readonly ITechnologyRepository _technologyRepository;
 
-        public UpdateProjectCommandHandler(ITechnologyRepository technologyRepository)
+        public UpdateTechnologyCommandHandler(ITechnologyRepository technologyRepository)
         {
             _technologyRepository = technologyRepository;
         }
