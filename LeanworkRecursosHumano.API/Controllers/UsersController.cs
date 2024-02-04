@@ -21,6 +21,7 @@ namespace LeanworkRecursosHumano.API.Controllers
         }
 
         [HttpPut("login")]
+        [AllowAnonymous]
         public async Task<IActionResult> Login([FromBody] LoginUserCommand command)
         {
             var loginUserModel = await _mediator.Send(command);
