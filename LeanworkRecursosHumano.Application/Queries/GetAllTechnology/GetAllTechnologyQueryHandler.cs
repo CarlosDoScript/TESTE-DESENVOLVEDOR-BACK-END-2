@@ -22,6 +22,11 @@ namespace LeanworkRecursosHumano.Application.Queries.GetAllTechnology
         {
             var technologys = await _technologyRepository.GetAllAsync();
 
+            if (technologys == null)
+            {
+                return new List<TechnologyViewModel>();
+            }
+
             var technologysViewModel = technologys
                 .Select(t => new TechnologyViewModel(
                     t.Id,

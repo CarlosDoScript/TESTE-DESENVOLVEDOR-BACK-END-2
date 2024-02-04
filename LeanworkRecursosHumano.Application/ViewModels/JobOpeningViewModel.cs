@@ -18,6 +18,5 @@ namespace LeanworkRecursosHumano.Application.ViewModels
         public string Title { get; private set; }
         public string Description { get; private set; }
         public DateTime ScreeningPeriod { get; private set; }
-        public bool Active { get; private set; }
     }
 }

@@ -23,6 +23,11 @@ namespace LeanworkRecursosHumano.Application.Queries.GetJobOpeningById
         {
             var jobOpening = await _jobOpeningRepository.GetByIdAsync(request.Id);
 
+            if(jobOpening == null)
+            {
+                return null;
+            }
+
             var jobOpeningsViewModel = new JobOpeningViewModel(
                 jobOpening.Id,
                 jobOpening.Title,

@@ -64,7 +64,7 @@ namespace LeanworkRecursosHumano.Infrastructure.Persistence.Repositories
 
                 var script = "UPDATE JobOpening SET Title = @title, Description = @description, ScreeningPeriod = @screeningPeriod WHERE Id = @id AND Active = 1";
 
-                return (await sqlConnection.ExecuteAsync(script, new {title,description,screeningPeriod}));
+                return (await sqlConnection.ExecuteAsync(script, new {id,title,description,screeningPeriod}));
 
             }
         }
@@ -77,7 +77,6 @@ namespace LeanworkRecursosHumano.Infrastructure.Persistence.Repositories
                 var script = "UPDATE JobOpening SET Active = 0 WHERE Id = @id";
 
                 return (await sqlConnection.ExecuteAsync(script, new { id }));
-
             }
         }
     }

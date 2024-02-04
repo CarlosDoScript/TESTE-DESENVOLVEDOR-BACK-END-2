@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace LeanworkRecursosHumano.Application.Queries.GetTechnologyById
 {
-    public class GetTechnologyByIdQueryHandler : IRequestHandler<GetTechnologyByIdQuery,TechnologyViewModel>
+    public class GetTechnologyByIdQueryHandler : IRequestHandler<GetTechnologyByIdQuery, TechnologyViewModel>
     {
         private readonly ITechnologyRepository _technologyRepository;
 
@@ -21,6 +21,11 @@ namespace LeanworkRecursosHumano.Application.Queries.GetTechnologyById
         public async Task<TechnologyViewModel> Handle(GetTechnologyByIdQuery request, CancellationToken cancellationToken)
         {
             var techonology = await _technologyRepository.GetByIdAsync(request.Id);
+
+            if (techonology == null)
+            {
+                return null;
+            }
 
             var technologyViewModel = new TechnologyViewModel(
                 techonology.Id,

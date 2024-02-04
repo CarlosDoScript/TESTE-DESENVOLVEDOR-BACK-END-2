@@ -8,13 +8,12 @@ namespace LeanworkRecursosHumano.Core.Entities
     {
         public JobOpening(){}
 
-        public JobOpening(int id, string title, string description, DateTime screeningPeriod, bool active)
+        public JobOpening(int id, string title, string description, DateTime screeningPeriod)
         {
             Id = id;
             Title = title;
             Description = description;
             ScreeningPeriod = screeningPeriod;
-            Active = active;
         }
 
         public int Id { get; private set; }

@@ -1,4 +1,5 @@
 ﻿using LeanworkRecursosHumano.Application.ViewModels;
+using LeanworkRecursosHumano.Core.Entities;
 using LeanworkRecursosHumano.Core.Repositories;
 using MediatR;
 using System;
@@ -22,6 +23,11 @@ namespace LeanworkRecursosHumano.Application.Queries.GetAllJobOpening
         public async Task<List<JobOpeningViewModel>> Handle(GetAllJobOpeningQuery request, CancellationToken cancellationToken)
         {
             var jobOpenings = await _jobOpeningRepository.GetAllAsync();
+
+            if (jobOpenings == null)
+            {
+                return new List<JobOpeningViewModel>();
+            }
 
             var jobOpeningsViewModel = jobOpenings.Select(j => new JobOpeningViewModel(
                 j.Id,
