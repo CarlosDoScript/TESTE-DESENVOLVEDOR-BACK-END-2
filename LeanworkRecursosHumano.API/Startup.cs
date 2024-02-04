@@ -36,12 +36,13 @@ namespace LeanworkRecursosHumano.API
             services.AddScoped<IPersonRHRepository, PersonRHRepository>();
             services.AddScoped<ITechnologyRepository, TechnologyRepository>();
             services.AddScoped<IJobOpeningRepository, JobOpeningRepository>();
+            services.AddScoped<ICandidateRepository, CandidateRepository>();
 
             services.AddMediatR(x => x.RegisterServicesFromAssembly(typeof(LoginUserCommand).Assembly));
 
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "DevFreela.API", Version = "v1" });
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "LeanworkRecusosHumano.API", Version = "v1" });
 
                 c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
                 {
