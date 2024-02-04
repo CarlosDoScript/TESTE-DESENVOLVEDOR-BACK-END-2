@@ -1,9 +1,16 @@
 ﻿using LeanworkRecursosHumano.Application.Commands.CreateInterview;
+using LeanworkRecursosHumano.Application.Commands.CreateTechnology;
+using LeanworkRecursosHumano.Application.Commands.CreateTechnologyCandidate;
 using LeanworkRecursosHumano.Application.Commands.DeleteCandidateJobOpening;
+using LeanworkRecursosHumano.Application.Commands.DeleteTechnologyCandidate;
 using LeanworkRecursosHumano.Application.Commands.UpdateCandidateJobOpening;
+using LeanworkRecursosHumano.Application.Commands.UpdateTechnologyCandidate;
 using LeanworkRecursosHumano.Application.Queries.GetAllByIdCandidate;
 using LeanworkRecursosHumano.Application.Queries.GetAllCandidateJobOpening;
+using LeanworkRecursosHumano.Application.Queries.GetAllCandidateTechnology;
+using LeanworkRecursosHumano.Application.Queries.GetTechnologyCandidateById;
 using MediatR;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 
@@ -11,11 +18,11 @@ namespace LeanworkRecursosHumano.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class InterviewController : ControllerBase
+    public class TecnologyCandidateController : ControllerBase
     {
         private readonly IMediator _mediator;
 
-        public InterviewController(IMediator mediator)
+        public TecnologyCandidateController(IMediator mediator)
         {
             _mediator = mediator;
         }
@@ -23,17 +30,17 @@ namespace LeanworkRecursosHumano.API.Controllers
         [HttpGet]
         public async Task<IActionResult> Get()
         {
-            var query = new GetAllCandidateJobOpeningQuery();
+            var query = new GetAllTechnologyCandidateQuery();
 
-            var candidatesInterviews = await _mediator.Send(query);
+            var technologysCandidates = await _mediator.Send(query);
 
-            return Ok(candidatesInterviews);
+            return Ok(technologysCandidates);
         }
 
         [HttpGet("candidate/{id}")]
         public async Task<IActionResult> GetByIdCandidateAsync(int id)
         {
-            var query = new GetCandidateJobOpeningByIdCandidateQuery(id);
+            var query = new GetTechnologyCandidateByIdQuery(id);
 
             var JobOpeningByCandidate = await _mediator.Send(query);
 
@@ -41,7 +48,7 @@ namespace LeanworkRecursosHumano.API.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Post([FromBody] CreateInterviewCommand command)
+        public async Task<IActionResult> Post([FromBody] CreateTecnologyCandidateCommand command)
         {
             var idCandidate = await _mediator.Send(command);
 
@@ -49,7 +56,7 @@ namespace LeanworkRecursosHumano.API.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> Put(int id, [FromBody] UpdateCandidateJobOpeningCommand command)
+        public async Task<IActionResult> Put(int id, [FromBody] UpdateTechnologyCandidateCommand command)
         {
             await _mediator.Send(command);
 
@@ -59,19 +66,11 @@ namespace LeanworkRecursosHumano.API.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
-            var query = new DeleteCandidateJobOpeningCommand(id);
+            var query = new DeleteTechnologyCandidateCommand(id);
 
             await _mediator.Send(query);
 
             return NoContent();
-        }
-
-        [HttpPost("finishScreening/")]
-        public async Task<IActionResult> FinishScreening()
-        {
-            await Task.FromResult(1);
-
-            return Ok();
         }
 
     }
