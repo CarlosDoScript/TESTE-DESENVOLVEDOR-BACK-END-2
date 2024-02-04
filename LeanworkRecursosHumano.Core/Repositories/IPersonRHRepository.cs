@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LeanworkRecursosHumano.Core.Repositories
 {
-    public interface IPersonRH
+    public interface IPersonRHRepository
     {
         Task<PersonRH> GetPersonByNameLoginAndPasswordAsync(string nameLogin, string password);
     }

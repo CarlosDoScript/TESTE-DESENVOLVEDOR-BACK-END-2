@@ -13,8 +13,8 @@ namespace LeanworkRecursosHumano.Application.Commands.LoginUser
     public class LoginUserCommandHandler : IRequestHandler<LoginUserCommand, LoginUserViewModel>
     {
         private readonly IAuthService _authService;
-        private readonly IPersonRH _personRH;
-        public LoginUserCommandHandler(IPersonRH personRH,IAuthService authService)
+        private readonly IPersonRHRepository _personRH;
+        public LoginUserCommandHandler(IPersonRHRepository personRH,IAuthService authService)
         {
             _personRH = personRH;
             _authService = authService;

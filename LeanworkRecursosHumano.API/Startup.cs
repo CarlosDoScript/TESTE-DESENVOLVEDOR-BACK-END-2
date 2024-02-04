@@ -1,5 +1,4 @@
 using LeanworkRecursosHumano.Application.Commands.LoginUser;
-using LeanworkRecursosHumano.Core.Entities;
 using LeanworkRecursosHumano.Core.Repositories;
 using LeanworkRecursosHumano.Core.Services;
 using LeanworkRecursosHumano.Infrastructure.Auth;
@@ -7,19 +6,12 @@ using LeanworkRecursosHumano.Infrastructure.Persistence.Repositories;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace LeanworkRecursosHumano.API
 {
@@ -41,7 +33,8 @@ namespace LeanworkRecursosHumano.API
             var connectionString = Configuration.GetConnectionString("LeanworkRecursosHumanoCs");
 
             services.AddScoped<IAuthService, AuthService>();
-            services.AddScoped<IPersonRH, PersonRHRepository>();
+            services.AddScoped<IPersonRHRepository, PersonRHRepository>();
+            services.AddScoped<ITechnologyRepository, TechnologyRepository>();
 
             services.AddMediatR(x => x.RegisterServicesFromAssembly(typeof(LoginUserCommand).Assembly));
 

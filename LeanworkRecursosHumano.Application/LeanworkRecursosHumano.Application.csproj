@@ -10,7 +10,6 @@
 
   <ItemGroup>
     <Folder Include="InputModels\" />
-    <Folder Include="Queries\" />
   </ItemGroup>
 
   <ItemGroup>

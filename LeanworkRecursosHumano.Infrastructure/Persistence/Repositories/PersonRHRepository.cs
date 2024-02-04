@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace LeanworkRecursosHumano.Infrastructure.Persistence.Repositories
 {
-    public class PersonRHRepository : IPersonRH
+    public class PersonRHRepository : IPersonRHRepository
     {
         private readonly string _connectionString;
 
