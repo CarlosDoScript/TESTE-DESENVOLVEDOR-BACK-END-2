@@ -38,7 +38,7 @@ namespace LeanworkRecursosHumano.API.Controllers
         }
 
         [HttpGet("candidate/{id}")]
-        public async Task<IActionResult> GetByIdCandidateAsync(int id)
+        public async Task<IActionResult> GetByIdCandidate(int id)
         {
             var query = new GetTechnologyCandidateByIdQuery(id);
 
@@ -55,7 +55,7 @@ namespace LeanworkRecursosHumano.API.Controllers
             return Ok(idCandidate);
         }
 
-        [HttpPut("{id}")]
+        [HttpPut("candidate/{id}")]
         public async Task<IActionResult> Put(int id, [FromBody] UpdateTechnologyCandidateCommand command)
         {
             await _mediator.Send(command);
@@ -63,7 +63,7 @@ namespace LeanworkRecursosHumano.API.Controllers
             return NoContent();
         }
 
-        [HttpDelete("{id}")]
+        [HttpDelete("candidate/{id}")]
         public async Task<IActionResult> Delete(int id)
         {
             var query = new DeleteTechnologyCandidateCommand(id);
