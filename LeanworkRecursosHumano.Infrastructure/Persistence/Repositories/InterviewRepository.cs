@@ -87,5 +87,17 @@ namespace LeanworkRecursosHumano.Infrastructure.Persistence.Repositories
                 return (await sqlConnection.ExecuteAsync(script, new { idCandidate, idJobOpening }));
             }
         }
+
+        public async Task<List<InterviewInfoReportDTO>> GetInfoByReportAsync()
+        {
+            using (var sqlConnection = new SqlConnection(_connectionString))
+            {
+                sqlConnection.Open();
+
+                var script = "SELECT C.Name AS NameCandidate, T.Name AS TechnologyCandidate, T.Weight AS TechnologyWeight FROM Candidate C LEFT JOIN CandidateTechnology CT ON C.Id = CT.IdCandidate LEFT JOIN Technology T ON CT.IdTechnology = T.Id WHERE CT.Active = 1 ORDER BY C.Name ASC";
+
+                return (await sqlConnection.QueryAsync<InterviewInfoReportDTO>(script)).ToList();
+            }
+        }
     }
 }

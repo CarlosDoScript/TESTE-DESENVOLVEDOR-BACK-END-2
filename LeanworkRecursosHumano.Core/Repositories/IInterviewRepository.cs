@@ -13,5 +13,6 @@ namespace LeanworkRecursosHumano.Core.Repositories
         Task<int> PostAsync(int idCandidate,int idJobOpening);
         Task<int> DeleteAsync(int idCandidate);
         Task<int> UpdateAsync(int idCandidate, int idJobOpening);
+        Task<List<InterviewInfoReportDTO>> GetInfoByReportAsync();
     }
 }

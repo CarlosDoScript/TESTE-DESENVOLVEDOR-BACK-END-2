@@ -3,9 +3,15 @@ using LeanworkRecursosHumano.Application.Commands.DeleteCandidateJobOpening;
 using LeanworkRecursosHumano.Application.Commands.UpdateCandidateJobOpening;
 using LeanworkRecursosHumano.Application.Queries.GetAllByIdCandidate;
 using LeanworkRecursosHumano.Application.Queries.GetAllCandidateJobOpening;
+using LeanworkRecursosHumano.Application.Queries.GetInfoReportByCandidateByTechnology;
 using MediatR;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
+using System.IO;
 using System.Threading.Tasks;
+using FastReport;
+using FastReport.Export.PdfSimple;
+
 
 namespace LeanworkRecursosHumano.API.Controllers
 {
@@ -14,10 +20,12 @@ namespace LeanworkRecursosHumano.API.Controllers
     public class InterviewController : ControllerBase
     {
         private readonly IMediator _mediator;
+        private readonly IWebHostEnvironment _webHostEnvironment;
 
-        public InterviewController(IMediator mediator)
+        public InterviewController(IMediator mediator,IWebHostEnvironment webHostEnvironment)
         {
             _mediator = mediator;
+            _webHostEnvironment = webHostEnvironment;
         }
 
         [HttpGet]
@@ -66,12 +74,30 @@ namespace LeanworkRecursosHumano.API.Controllers
             return NoContent();
         }
 
-        [HttpPost("finishScreening/")]
+        [HttpGet("finishScreening/")]
         public async Task<IActionResult> FinishScreening()
         {
-            await Task.FromResult(1);
+            var queryReport = new GetInfoReportByCandidateByTechnologyQuery();
 
-            return Ok();
+            var listWeights = await _mediator.Send(queryReport);
+
+            var report = new Report();
+
+            var filePath = Path.Combine(_webHostEnvironment.ContentRootPath, "Reports", "RelCandidatos.frx");
+            report.Load(filePath);
+
+            report.Dictionary.RegisterBusinessObject(listWeights, "listCandidates", 10, true);
+            report.Prepare();
+
+            var pdfExport = new PDFSimpleExport();
+
+            using (var ms = new MemoryStream())
+            {
+                pdfExport.Export(report, ms);
+                ms.Seek(0, SeekOrigin.Begin);
+                return File(ms.ToArray(), "application/pdf", "RelatorioCandidatos.pdf");
+            }
+
         }
 
     }

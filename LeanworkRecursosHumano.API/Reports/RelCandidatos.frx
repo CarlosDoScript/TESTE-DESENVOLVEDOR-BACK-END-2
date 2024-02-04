@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ScriptLanguage="CSharp" ReportInfo.Created="02/04/2024 19:04:37" ReportInfo.Modified="02/04/2024 19:48:12" ReportInfo.CreatorVersion="2023.1.0.0">
+  <Dictionary>
+    <BusinessObjectDataSource Name="listCandidates" ReferenceName="listCandidates" DataType="null" Enabled="true">
+      <Column Name="NameCandidate" DataType="System.String"/>
+      <Column Name="TechnologyCandidate" DataType="System.String"/>
+      <Column Name="TechnologyWeight" DataType="System.Int32"/>
+    </BusinessObjectDataSource>
+  </Dictionary>
+  <ReportPage Name="Page1" Watermark.Font="Arial, 60pt">
+    <ReportTitleBand Name="ReportTitle1" Width="718.2" Height="37.8">
+      <TextObject Name="Text1" Width="718.2" Height="37.8" Border.Lines="Bottom" Text="Relatório dos Candidatos" HorzAlign="Center" VertAlign="Center" Font="Arial, 14pt, style=Bold"/>
+    </ReportTitleBand>
+    <PageHeaderBand Name="PageHeader1" Top="41" Width="718.2" Height="25.45">
+      <TextObject Name="Text2" Top="5" Width="94.5" Height="18.9" Text="Nome" VertAlign="Center" Font="Arial, 10pt"/>
+      <TextObject Name="Text3" Left="226.8" Top="5" Width="94.5" Height="18.9" Text="Tecnologia " VertAlign="Center" Font="Arial, 10pt"/>
+      <TextObject Name="Text4" Left="623.7" Top="5" Width="94.5" Height="18.9" Text="Peso" VertAlign="Center" Font="Arial, 10pt"/>
+      <LineObject Name="Line1" Top="23.45" Width="718.2"/>
+    </PageHeaderBand>
+    <DataBand Name="Data1" Top="69.65" Width="718.2" Height="28.35" DataSource="listCandidates">
+      <TextObject Name="Text5" Top="6" Width="217.35" Height="18.9" Text="[listCandidates.NameCandidate]" VertAlign="Center" Font="Arial, 10pt"/>
+      <TextObject Name="Text6" Left="226.8" Top="6" Width="378" Height="18.9" Text="[listCandidates.TechnologyCandidate]" VertAlign="Center" Font="Arial, 10pt"/>
+      <TextObject Name="Text7" Left="623.7" Top="6" Width="94.5" Height="18.9" Text="[listCandidates.TechnologyWeight]" VertAlign="Center" Font="Arial, 10pt"/>
+    </DataBand>
+    <PageFooterBand Name="PageFooter1" Top="101.2" Width="718.2" Height="18.9"/>
+  </ReportPage>
+</Report>
