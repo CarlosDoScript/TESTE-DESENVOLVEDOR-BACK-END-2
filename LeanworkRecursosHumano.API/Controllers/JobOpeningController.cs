@@ -1,15 +1,9 @@
 ﻿using LeanworkRecursosHumano.Application.Commands.CreateJobOpening;
-using LeanworkRecursosHumano.Application.Commands.CreateTechnology;
 using LeanworkRecursosHumano.Application.Commands.DeleteJobOpening;
-using LeanworkRecursosHumano.Application.Commands.DeleteTechnology;
 using LeanworkRecursosHumano.Application.Commands.UpdateJobOpening;
-using LeanworkRecursosHumano.Application.Commands.UpdateTechnology;
 using LeanworkRecursosHumano.Application.Queries.GetAllJobOpening;
-using LeanworkRecursosHumano.Application.Queries.GetAllTechnology;
 using LeanworkRecursosHumano.Application.Queries.GetJobOpeningById;
-using LeanworkRecursosHumano.Application.Queries.GetTechnologyById;
 using MediatR;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 

@@ -7,8 +7,7 @@ namespace LeanworkRecursosHumano.Application.Commands.CreateInterview
 {
     public class CreateInterviewCommand : IRequest<int>
     {
-        public string Name { get; set; }
-        public string Email { get; set; }
-        public string CellPhone { get; set; }
+        public int IdCandidate { get; set; }
+        public int IdJobOpening { get; set; }
     }
 }

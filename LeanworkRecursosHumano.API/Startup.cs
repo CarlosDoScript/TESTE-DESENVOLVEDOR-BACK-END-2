@@ -37,6 +37,7 @@ namespace LeanworkRecursosHumano.API
             services.AddScoped<ITechnologyRepository, TechnologyRepository>();
             services.AddScoped<IJobOpeningRepository, JobOpeningRepository>();
             services.AddScoped<ICandidateRepository, CandidateRepository>();
+            services.AddScoped<IInterviewRepository, InterviewRepository>();
 
             services.AddMediatR(x => x.RegisterServicesFromAssembly(typeof(LoginUserCommand).Assembly));
 
