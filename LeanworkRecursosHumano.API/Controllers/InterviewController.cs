@@ -11,12 +11,14 @@ using System.IO;
 using System.Threading.Tasks;
 using FastReport;
 using FastReport.Export.PdfSimple;
+using Microsoft.AspNetCore.Authorization;
 
 
 namespace LeanworkRecursosHumano.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class InterviewController : ControllerBase
     {
         private readonly IMediator _mediator;

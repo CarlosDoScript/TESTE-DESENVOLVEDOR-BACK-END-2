@@ -9,6 +9,7 @@ using LeanworkRecursosHumano.Application.Queries.GetAllJobOpening;
 using LeanworkRecursosHumano.Application.Queries.GetCandidateById;
 using LeanworkRecursosHumano.Application.Queries.GetJobOpeningById;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
@@ -17,6 +18,7 @@ namespace LeanworkRecursosHumano.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class CandidateController : ControllerBase
     {
         private readonly IMediator _mediator;

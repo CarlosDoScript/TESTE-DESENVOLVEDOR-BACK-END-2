@@ -9,6 +9,7 @@ using LeanworkRecursosHumano.Application.Queries.GetAllTechnologyJobOpening;
 using LeanworkRecursosHumano.Application.Queries.GetTechnologyCandidateById;
 using LeanworkRecursosHumano.Application.Queries.GetTechnologyJobOpeningById;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 
@@ -16,6 +17,7 @@ namespace LeanworkRecursosHumano.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class TechnologyJobOpeningController : ControllerBase
     {
 
